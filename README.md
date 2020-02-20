@@ -1,2 +1,2 @@
 # Doki_Language
-Making a new language
+Design of new language named as Doki language and designing its compiler.
