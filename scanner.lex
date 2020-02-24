@@ -2,6 +2,7 @@
 #include<iostream>
 using namespace std;
 extern "C" int yylex();
+#include "parser.tab.c" //define the tokens
 %}
 
 %%
