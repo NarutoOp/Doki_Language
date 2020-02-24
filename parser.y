@@ -1,5 +1,6 @@
 %{
 #include<iostream>
+#include<cstring>
 using namespace std;
 extern "C" void yyerror(char *s);
 extern "C" int yyparse();
@@ -22,7 +23,7 @@ extern "C" int yyparse();
 
 %%
 program:
-	| program statement { cout << "Result : "<<$2<<endl;}
+	| program statement { cout << "Result : "<< $2 <<endl; }
 	;
 
 statement: exp SEMI
@@ -35,8 +36,9 @@ exp:
 	| exp MULT exp { $$ = $1 * $3; }
 	| exp DIV exp { $$ = $1 / $3; }
 	;
+
 %%
-int main(int argc,char **argv){
+int main(int argc, char **argv){
 	if(argc < 2){
 		cout << "Enter parsing file !"<<endl;
 		exit(1);
@@ -47,11 +49,12 @@ int main(int argc,char **argv){
 		cout<<"Could not open source file "<<argv[1]<<endl;
 		exit(1);
 	}
+
 	yyin = sourcefile;
 
 	yyparse();
 }
 
-void yyerror(char *s){
-	cerr << s <<endl;
+void yyerror(char * s){
+	cerr << s << endl;
 }

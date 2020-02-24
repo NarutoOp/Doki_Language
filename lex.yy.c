@@ -286,8 +286,8 @@ static void yy_fatal_error YY_PROTO(( yyconst char msg[] ));
 #define YY_END_OF_BUFFER 10
 static yyconst short int yy_accept[17] =
     {   0,
-        0,    0,   10,    9,    8,    5,    3,    4,    6,    2,
-        7,    0,    2,    1,    1,    0
+        0,    0,   10,    9,    8,    5,    3,    4,    6,    1,
+        7,    0,    1,    2,    1,    0
     } ;
 
 static yyconst int yy_ec[256] =
@@ -368,9 +368,11 @@ char *yytext;
 #define INITIAL 0
 #line 2 "scanner.lex"
 #include<iostream>
+#include<cstring>
 using namespace std;
 extern "C" int yylex();
-#line 374 "lex.yy.c"
+#include "parser.tab.c" //define the tokens
+#line 376 "lex.yy.c"
 
 /* Macros after this point can all be overridden by user definitions in
  * section 1.
@@ -521,9 +523,10 @@ YY_DECL
 	register char *yy_cp, *yy_bp;
 	register int yy_act;
 
-#line 7 "scanner.lex"
+#line 9 "scanner.lex"
 
-#line 527 "lex.yy.c"
+ 
+#line 530 "lex.yy.c"
 
 	if ( yy_init )
 		{
@@ -608,50 +611,50 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 8 "scanner.lex"
-cout<< "FLOAT: ("<< yytext <<")"<<endl;
+#line 11 "scanner.lex"
+{ yylval.intVal = atoi(yytext); return INTEGER_LITERAL; }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 9 "scanner.lex"
-cout << "INT: (" << yytext << ")" << endl;
+#line 12 "scanner.lex"
+{ yylval.floatVal = atof(yytext); return FLOAT_LITERAL; } 
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 10 "scanner.lex"
-cout << "PLUS" << endl;
+#line 13 "scanner.lex"
+{ return PLUS; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 11 "scanner.lex"
-cout << "MINUS" << endl;
+#line 14 "scanner.lex"
+{ return MINUS; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 12 "scanner.lex"
-cout << "TIMES" << endl;
+#line 15 "scanner.lex"
+{ return MULT; }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 13 "scanner.lex"
-cout << "DIVIDED BY" << endl;
+#line 16 "scanner.lex"
+{ return DIV; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 14 "scanner.lex"
-cout << "SEMICOLON" << endl;
+#line 17 "scanner.lex"
+{ return SEMI;}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 15 "scanner.lex"
+#line 18 "scanner.lex"
 ; /* ignore whitespace */
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 17 "scanner.lex"
+#line 20 "scanner.lex"
 ECHO;
 	YY_BREAK
-#line 655 "lex.yy.c"
+#line 658 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1537,14 +1540,10 @@ int main()
 	return 0;
 	}
 #endif
-#line 17 "scanner.lex"
+#line 20 "scanner.lex"
 
 /* Code */
 int yywrap(){
 	return 0;
 }
 
-int main(){
-yylex();
-return 0;
-}
