@@ -1,0 +1,8 @@
+a = 15;
+b = 16;
+
+c = a + b;
+show a;
+show b;
+show c;
+end;
